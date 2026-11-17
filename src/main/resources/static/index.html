@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>DSA Tracker</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header class="top">
+  <h1>DSA Tracker</h1>
+  <div class="user"><span id="who" class="muted"></span><button id="logout" class="btn">Log out</button><button id="add-btn" class="btn primary">Add problem</button></div>
+</header>
+
+<main>
+  <section class="hero">
+    <div class="streak"><span id="s-streak">0</span><small>day streak</small></div>
+    <div class="heat-wrap">
+      <p class="muted">Problems solved, last 12 weeks</p>
+      <div id="heat" class="heat" aria-label="Activity map"></div>
+    </div>
+  </section>
+
+  <section class="stats">
+    <div><b id="s-solved">0</b> solved of <b id="s-total">0</b></div>
+    <div><b id="s-revisit">0</b> to revisit</div>
+    <div id="s-diff" class="bars"></div>
+    <div id="s-topic" class="bars"></div>
+  </section>
+
+  <section class="filters">
+    <input id="f-q" type="search" placeholder="Search by title">
+    <input id="f-topic" list="topics" placeholder="Topic">
+    <select id="f-difficulty"><option value="">Any difficulty</option><option>EASY</option><option>MEDIUM</option><option>HARD</option></select>
+    <select id="f-status"><option value="">Any status</option><option value="TODO">To do</option><option value="IN_PROGRESS">In progress</option><option value="SOLVED">Solved</option><option value="REVISIT">Revisit</option></select>
+  </section>
+
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th>Problem</th><th>Topic</th><th>Difficulty</th><th>Status</th><th>Solved</th><th></th></tr></thead>
+      <tbody id="rows"></tbody>
+    </table>
+    <p id="empty" class="empty" hidden>No problems match. Add your first one with “Add problem”.</p>
+  </div>
+</main>
+
+<datalist id="topics">
+  <option>Arrays</option><option>Strings</option><option>Linked List</option><option>Stack & Queue</option>
+  <option>Trees</option><option>Graphs</option><option>Dynamic Programming</option><option>Recursion & Backtracking</option>
+  <option>Binary Search</option><option>Heap</option><option>Hashing</option><option>Greedy</option><option>Design</option>
+</datalist>
+
+<dialog id="dlg">
+  <div class="form" id="form">
+    <h2 id="dlg-title">Add problem</h2>
+    <label>Title<input id="title" maxlength="200"></label>
+    <div class="two">
+      <label>Topic<input id="topic" list="topics" maxlength="60"></label>
+      <label>Platform<input id="platform" list="plats" maxlength="40"></label>
+    </div>
+    <datalist id="plats"><option>LeetCode</option><option>GeeksforGeeks</option><option>Codeforces</option><option>HackerRank</option></datalist>
+    <div class="two">
+      <label>Difficulty<select id="difficulty"><option>EASY</option><option selected>MEDIUM</option><option>HARD</option></select></label>
+      <label>Status<select id="status"><option value="TODO">To do</option><option value="IN_PROGRESS">In progress</option><option value="SOLVED">Solved</option><option value="REVISIT">Revisit</option></select></label>
+    </div>
+    <label>Problem link<input id="link" type="url" placeholder="https://"></label>
+    <label>Notes (approach, time and space complexity)<textarea id="notes" rows="4"></textarea></label>
+    <p id="err" class="err" role="alert"></p>
+    <div class="actions">
+      <button class="btn" id="cancel">Cancel</button>
+      <button class="btn primary" id="save">Save problem</button>
+    </div>
+  </div>
+</dialog>
+<script src="app.js"></script>
+</body>
+</html>
